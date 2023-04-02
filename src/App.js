@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import s from './App.module.css';
+import {Calendar} from "./components/Calendar";
+import {useState} from "react";
+import {formatDate} from "./utils/helpers/date/formatDate";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+// locale - на каком языке будет календарь
+// selectedDate - что бы мы могли выбирать дату
+
+const App = () => {
+
+    const [selectedDate, setSelectedDay] = useState(new Date());
+
+    return (
+        <div className={s.app_container}>
+            {/*<div className={s.date__container}>{formatDate(selectedDate, 'DDD DD MMM YYYY')}</div>*/}
+            <div className={s.date__container}>{formatDate(selectedDate, 'MMMM YYYY')}</div>
+
+            <Calendar selectedDate={selectedDate} selectDate={(date) => setSelectedDay(date)} />
+        </div>
+    );
 }
 
 export default App;
